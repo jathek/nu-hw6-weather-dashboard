@@ -2,3 +2,83 @@
   box-sizing: border-box;
   border: 1px dashed red;
 }
+html {
+  font-size: 62.5%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-size: 1.6rem;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+header {
+  flex: 0 0 10%;
+  max-height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+h1 {  
+  text-align: center;
+  margin: 0;
+}
+.weatherInfo {
+  flex: 0 0 90%;
+  max-height: 90%;
+  display: flex;
+}
+h2,
+h3 {
+  margin: 0;
+}
+
+
+
+#search {
+  flex: 0 0 25%;
+  max-width: 25%;
+  display: flex;
+  flex-direction: column;
+}
+#search form {
+  display: flex;
+}
+#search form > input {
+  flex: 0 0 80%;
+  max-width: 80%;
+}
+#search form > button {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
+
+
+main {
+  flex: 0 0 75%;
+  display: flex;
+  flex-direction: column;
+  max-width: 75%;
+}
+
+#fiveDay {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#fiveDayHeader {
+  flex: 0 0 5%;
+}
+#forecastDays {
+  display: flex;
+  height: 100%;
+}
+#forecastDays > .daycast {
+  flex: 0 0 20%;
+  max-width: 20%;
+}
