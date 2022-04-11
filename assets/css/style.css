@@ -57,7 +57,7 @@ h3 {
 }
 #search form > input {
   flex: 0 0 4rem;
-  min-width: 90%;
+  width: 90%;
   margin: 0.4rem 0;
 }
 #search > button,
@@ -102,13 +102,13 @@ h4 {
 #forecastDays > .daycast {
   flex: 0 0 20%;
   max-width: 20%;
-  height: 40%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 #forecastDays > .daycast img {
-  height: 2.4rem;
-  width: 2.4rem;
-  align-self: center;
+  height: 6.4rem;
+  width: 6.4rem;
+  align-self: flex-start;
 }

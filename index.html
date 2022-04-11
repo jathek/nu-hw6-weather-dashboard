@@ -6,13 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather Dashboard</title>
     <link rel="stylesheet" href="./assets/css/style.css" />
-    <script
-      src="https://cdn.jsdelivr.net/npm/moment@2.29.2/moment.js"
-      integrity="sha256-Lhj/vhcRsEzKw74W7eVoX94A4oZDdX8/9jfFIMyz9OM="
-      crossorigin="anonymous"
-      defer
-    ></script>
     <script src="./assets/js/script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Weather Dashboard</h1>
+    </header>
+    <div class="weatherInfo">
+      <div id="search">
+        <h2>Search for a City:</h2>
+        <form id="searchForm">
+          <input type="text" name="city" id="searchInput" />
+          <button>Search</button>
+        </form>
+        <hr />
+      </div>
+      <main>
+        <section id="cityDetails">
+          <h2>Pick a city!</h2>
+        </section>
+        <section id="fiveDay">
+          <h3 id="fiveDayHeader"><span>5-Day Forecast:</span></h3>
+          <section id="forecastDays">
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
 </html>
