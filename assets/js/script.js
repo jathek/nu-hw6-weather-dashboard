@@ -7,8 +7,8 @@ searchForm.addEventListener("submit", citySearch);
 function citySearch(event) {
   event.preventDefault();
   let cityName = searchInput.value.trim();
-  console.log(typeof cityName.length)
-  if (Number(cityName.length) !== 0){
+  console.log(typeof cityName.length);
+  if (Number(cityName.length) !== 0) {
     storeSearch(cityName);
     getWeather(cityName);
   }
@@ -37,8 +37,14 @@ function writeWeather(data, cityName) {
   let cityTemp = data.current.temp + " °F";
   let cityWind = data.current.wind_speed + " MPH";
   let cityHumidity = data.current.humidity + "%";
+  let cityDayDate = new Date(data.current.dt * 1000);
+  let cityDayYear = cityDayDate.getFullYear();
+  let cityDayMonth = `0${cityDayDate.getMonth() + 1}`;
+  cityDayMonth = cityDayMonth.slice(-2);
+  let cityDayDay = `0${cityDayDate.getDate()}`;
+  cityDayDay = cityDayDay.slice(-2);
   let cityUV = data.current.uvi.toFixed(2);
-  let uvColor = "uvPurple"
+  let uvColor = "uvPurple";
   if (cityUV < 3) {
     uvColor = "uvGreen";
   } else if (cityUV < 6) {
@@ -50,7 +56,7 @@ function writeWeather(data, cityName) {
   }
   let cityIcon = data.current.weather[0].icon;
   const currentInfo = document.querySelector("#cityDetails");
-  currentInfo.innerHTML = `<h2>Currently in <span class="capitalCase">${cityName}</span></h2><img id="currentIcon" src="http://openweathermap.org/img/wn/${cityIcon}@2x.png" alt="a small icon depicting the current day's conditions"><p>Temp: ${cityTemp}</p><p>Wind: ${cityWind}</p><p>Humidity: ${cityHumidity}</p><p>UV Index: <span class="${uvColor}"> ${cityUV}</span></p>`;
+  currentInfo.innerHTML = `<h2><span class="capitalCase">${cityName}</span> (${cityDayYear}/${cityDayMonth}/${cityDayDay})</h2><img id="currentIcon" src="http://openweathermap.org/img/wn/${cityIcon}@2x.png" alt="a small icon depicting the current day's conditions"><p>Temp: ${cityTemp}</p><p>Wind: ${cityWind}</p><p>Humidity: ${cityHumidity}</p><p>UV Index: <span class="${uvColor}"> ${cityUV}</span></p>`;
   let cityForecast = data.daily;
   const forecastDays = document.querySelector("#forecastDays");
   forecastDays.innerHTML = "";
@@ -64,8 +70,10 @@ function writeWeather(data, cityName) {
     let castDayDate = new Date(castDay.dt * 1000);
     let castDayYear = castDayDate.getFullYear();
     let castDayMonth = `0${castDayDate.getMonth() + 1}`;
-    let castDayDay = castDayDate.getDate();
-    forecastDays.innerHTML += `<div class="daycast"><h4>${castDayYear}/${castDayMonth.slice(
+    castDayMonth = castDayMonth.slice(-2);
+    let castDayDay = `0${castDayDate.getDate()}`;
+    castDayDay = castDayDay.slice(-2);
+      forecastDays.innerHTML += `<div class="daycast"><h4>${castDayYear}/${castDayMonth.slice(
       -2
     )}/${castDayDay}</h4><img src="http://openweathermap.org/img/wn/${castIcon}@2x.png" alt="a small icon depicting the forecasted day's conditions"><p>High: ${castTempHi}</p><p>Low: ${castTempLow}</p><p>Wind: ${castWind}</p><p>Humidity: ${castHumid}</p></div>`;
   }
