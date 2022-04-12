@@ -1,6 +1,16 @@
 const apiOpenWeather = "9696e5041f086f68c81a5f683ef01308";
 let cityData;
+// set weatherSearches from localStorage
+let weatherSearches = JSON.parse(localStorage.getItem("weatherSearches"));
+const previousSearches = document.querySelector("#previousSearches");
+if (weatherSearches === null) {
+  weatherSearches = [];
+} else {
+  writePrev();
+  previousSearches.addEventListener("click", prevSearch);
+}
 
+// accept searches from user
 const searchForm = document.querySelector("#searchForm");
 const searchInput = document.querySelector("#searchInput");
 searchForm.addEventListener("submit", citySearch);
@@ -11,6 +21,7 @@ function citySearch(event) {
   if (Number(cityName.length) !== 0) {
     storeSearch(cityName);
     getWeather(cityName);
+    writePrev();
   }
   searchForm.reset();
 }
@@ -77,18 +88,14 @@ function writeWeather(data, cityName) {
   }
 }
 
-// set weatherSearches from localStorage
-let weatherSearches = JSON.parse(localStorage.getItem("weatherSearches"));
-const previousSearches = document.querySelector("#previousSearches");
-if (weatherSearches === null) {
-  weatherSearches = [];
-} else {
+function writePrev() {
   getWeather(weatherSearches[0]);
+  previousSearches.innerHTML = "";
   for (let i = 0; i < 8; i++) {
     previousSearches.innerHTML += `<button class="capitalCase">${weatherSearches[i]}</button>`;
   }
-  previousSearches.addEventListener("click", prevSearch);
 }
+
 function prevSearch(event) {
   if (event.target.matches("button")) {
     prevCityName = event.target.innerText;
