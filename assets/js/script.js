@@ -26,17 +26,11 @@ function getWeather(cityName) {
     .then((response) => response.json())
     .then((data) => {
       cityData = data;
-      writeWeatherSearch(data,cityName);
+      writeWeather(data,cityName);
     });
 }
 
-function setWeatherVars(data) {
-  console.log(
-    `Name: ${cityName}, Temp: ${cityTemp}, Wind: ${cityWind}, Humidity: ${cityHumidity}, UV: ${cityUV}`
-    );
-  }
-  
-  function writeWeatherSearch(data,cityName) {
+  function writeWeather(data,cityName) {
   let cityTemp = data.current.temp + " °F";
   let cityWind = data.current.wind_speed + " MPH";
   let cityHumidity = data.current.humidity + "%";
