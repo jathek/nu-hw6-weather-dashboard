@@ -73,9 +73,7 @@ function writeWeather(data, cityName) {
     castDayMonth = castDayMonth.slice(-2);
     let castDayDay = `0${castDayDate.getDate()}`;
     castDayDay = castDayDay.slice(-2);
-      forecastDays.innerHTML += `<div class="daycast"><h4>${castDayYear}/${castDayMonth.slice(
-      -2
-    )}/${castDayDay}</h4><img src="http://openweathermap.org/img/wn/${castIcon}@2x.png" alt="a small icon depicting the forecasted day's conditions"><p>High: ${castTempHi}</p><p>Low: ${castTempLow}</p><p>Wind: ${castWind}</p><p>Humidity: ${castHumid}</p></div>`;
+    forecastDays.innerHTML += `<div class="daycast"><h4>${castDayYear}/${castDayMonth}/${castDayDay}</h4><img src="http://openweathermap.org/img/wn/${castIcon}@2x.png" alt="a small icon depicting the forecasted day's conditions"><p>High: ${castTempHi}</p><p>Low: ${castTempLow}</p><p>Wind: ${castWind}</p><p>Humidity: ${castHumid}</p></div>`;
   }
 }
 
