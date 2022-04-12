@@ -8,5 +8,30 @@
     <link rel="stylesheet" href="./assets/css/style.css" />
     <script src="./assets/js/script.js" defer></script>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <h1>Weather Dashboard</h1>
+    </header>
+    <div class="weatherInfo">
+      <div id="search">
+        <h2>Search for a City:</h2>
+        <form id="searchForm">
+          <input type="text" name="city" id="searchInput" placeholder="Chicago" />
+          <button>Search</button>
+        </form>
+        <hr />
+        <div id="previousSearches"></div>
+      </div>
+      <main>
+        <section id="cityDetails">
+          <h2>Pick a city!</h2>
+        </section>
+        <section id="fiveDay">
+          <h3 id="fiveDayHeader">5-Day Forecast:</h3>
+          <section id="forecastDays">
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
 </html>
