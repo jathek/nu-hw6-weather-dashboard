@@ -1,3 +1,7 @@
+:root {
+  --sharedpadding: 0.8rem;
+}
+
 * {
   box-sizing: border-box;
   /* outline: 1px dashed red; for testing */
@@ -8,8 +12,13 @@ html {
   padding: 0;
 }
 
+.capitalCase {
+  text-transform: capitalize;
+}
+
 body {
   font-size: 1.6rem;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
@@ -23,6 +32,10 @@ header {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2.4rem;
+  width: 100%;
+  background-image: linear-gradient(to right, #3b6ec3, #230455);
+  color: white;
 }
 h1 {
   text-align: center;
@@ -32,6 +45,8 @@ h1 {
   flex: 0 0 90%;
   max-height: 90%;
   display: flex;
+  width: 100%;
+  justify-content: space-between;
 }
 h2,
 h3 {
@@ -39,12 +54,13 @@ h3 {
 }
 
 #search {
-  flex: 0 0 25%;
-  max-width: 25%;
+  flex: 0 0 20%;
+  max-width: 20%;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
+  padding: var(--sharedpadding);
 }
 #search form {
   display: flex;
@@ -57,58 +73,125 @@ h3 {
 }
 #search form > input {
   flex: 0 0 4rem;
-  width: 90%;
+  width: 100%;
   margin: 0.4rem 0;
+  padding: 1rem;
 }
-#search > button,
 #search form > button {
   flex: 0 0 3.5rem;
-  width: 90%;
+  width: 100%;
   margin: 0.4rem 0 0.4rem 0;
+  background-color: #5aa2e9;
+  color: white;
+  border-radius: 5px;
+  border: none;
 }
 #search > hr {
-  width: 90%;
+  width: 100%;
   flex: 0 0 0.2rem;
   color: grey;
 }
-
-main {
-  flex: 0 0 75%;
+#previousSearches {
   display: flex;
   flex-direction: column;
-  max-width: 75%;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#previousSearches > button {
+  flex: 0 0 3.5rem;
+  width: 100%;
+  margin: 0.4rem 0 0.4rem 0;
+  background-color: #b7b7b7;
+  border-radius: 5px;
+  border: none;
 }
 
-p,
+main {
+  flex: 0 0 80%;
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  padding: var(--sharedpadding);
+}
+
+#cityDetails {
+  outline: 1px solid black;
+  border-radius: 5px;
+  padding: var(--sharedpadding);
+}
+#cityDetails h2 {
+  display: inline;
+}
+#currentIcon {
+  max-height: 3em;
+  margin-bottom: -1.6rem;
+}
+span[class^="uv"] {
+  padding: 0 0.8rem;
+  border-radius: 5px;
+  filter: drop-shadow(1px 1px 2px black);
+}
+.uvGreen {
+  background-color: green;
+  color: white;
+}
+.uvYellow {
+  background-color: yellow;
+  color: black;
+}
+.uvOrange {
+  background-color: orange;
+  color: black;
+}
+.uvRed {
+  background-color: red;
+  color: white;
+}
+.uvPurple {
+  background-color: purple;
+  color: white;
+}
+
 h4 {
-  margin:0;
+  margin: 0;
+}
+p {
+  margin: 0;
+  line-height: 200%;
 }
 
 #fiveDay {
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding-top: var(--sharedpadding);
 }
 #fiveDayHeader {
   flex: 0 0 5%;
-  display: flex;
-  justify-content: start;
-  align-items: center;
+  padding-bottom: var(--sharedpadding);
 }
 #forecastDays {
   display: flex;
   height: 100%;
+  justify-content: space-between;
 }
 #forecastDays > .daycast {
-  flex: 0 0 20%;
-  max-width: 20%;
-  height: 100%;
+  flex: 0 0 19%;
+  max-width: 19%;
+  max-height: 24rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  background-color: #33475a;
+  color: white;
+  padding: var(--sharedpadding);
+  border-radius: 5px;
 }
 #forecastDays > .daycast img {
-  height: 6.4rem;
-  width: 6.4rem;
+  height: 4.8rem;
+  width: 4.8rem;
   align-self: flex-start;
 }
