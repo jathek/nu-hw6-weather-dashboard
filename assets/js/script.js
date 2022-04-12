@@ -1,19 +1,18 @@
 const apiOpenWeather = "9696e5041f086f68c81a5f683ef01308";
 let cityData;
 
-let cityName;
 const searchForm = document.querySelector("#searchForm");
 const searchInput = document.querySelector("#searchInput");
 searchForm.addEventListener("submit", citySearch);
 function citySearch(event) {
   event.preventDefault();
-  cityName = searchInput.value.trim();
+  let cityName = searchInput.value.trim();
   storeSearch(cityName);
-  getWeather();
+  getWeather(cityName);
   searchForm.reset();
 }
 
-function getWeather() {
+function getWeather(cityName) {
   fetch(
     `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiOpenWeather}
     `
@@ -27,36 +26,28 @@ function getWeather() {
     .then((response) => response.json())
     .then((data) => {
       cityData = data;
-      setWeatherVars(data);
-      writeWeatherVars();
+      writeWeatherSearch(data,cityName);
     });
 }
 
-// getWeather("San Antonio");
-let cityTemp;
-let cityWind;
-let cityHumidity;
-let cityUV;
-let cityForecast;
 function setWeatherVars(data) {
-  cityTemp = data.current.temp + " °F";
-  cityWind = data.current.wind_speed + " MPH";
-  cityHumidity = data.current.humidity + "%";
-  cityUV = data.current.uvi.toFixed(2);
-  cityForecast = data.daily;
   console.log(
     `Name: ${cityName}, Temp: ${cityTemp}, Wind: ${cityWind}, Humidity: ${cityHumidity}, UV: ${cityUV}`
-  );
-}
-
-function writeWeatherVars() {
+    );
+  }
+  
+  function writeWeatherSearch(data,cityName) {
+  let cityTemp = data.current.temp + " °F";
+  let cityWind = data.current.wind_speed + " MPH";
+  let cityHumidity = data.current.humidity + "%";
+  let cityUV = data.current.uvi.toFixed(2);
+  let cityForecast = data.daily;
   const currentInfo = document.querySelector("#cityDetails");
-  currentInfo.innerHTML = `<h2>${cityName}</h2><p>Temp: ${cityTemp}</p><p>Wind: ${cityWind}</p><p>Humidity: ${cityHumidity}</p><p>UV Index: <span id="uv"> ${cityUV}</span></p>`;
+  currentInfo.innerHTML = `<h2>Currently in ${cityName}</h2><p>Temp: ${cityTemp}</p><p>Wind: ${cityWind}</p><p>Humidity: ${cityHumidity}</p><p>UV Index: <span id="uv"> ${cityUV}</span></p>`;
   const forecastDays = document.querySelector("#forecastDays");
   forecastDays.innerHTML = "";
-  for (let i = 0; i < 5; i++) {
+  for (let i = 1; i < 6; i++) {
     let castDay = cityForecast[i];
-    let castDate = castDay.dt;
     let castIcon = castDay.weather[0].icon;
     let castTemp = `${castDay.temp.max} °F / ${castDay.temp.min} °F`;
     let castWind = castDay.wind_speed + " MPH";
@@ -76,7 +67,6 @@ let weatherSearches = JSON.parse(localStorage.getItem("weatherSearches"));
 if (weatherSearches === null) {
   weatherSearches = [];
 }
-
 function storeSearch(search) {
   // current search lowercased and stored as var
   let searchToStore = search.toLowerCase();
