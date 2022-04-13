@@ -119,6 +119,7 @@ Project Link: [https://github.com/nearcatch/nu-hw6-weather-dashboard](https://gi
 ## Acknowledgments
 
 * [othneildrew/Best-README-Template](https://github.com/othneildrew/Best-README-Template)
+* [OpenWeatherMap API](https://openweathermap.org/api)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
 
