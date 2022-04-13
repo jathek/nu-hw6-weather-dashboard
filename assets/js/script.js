@@ -18,6 +18,7 @@ function citySearch(event) {
   event.preventDefault();
   let cityName = searchInput.value.trim();
   console.log(typeof cityName.length);
+  /* call store and get functions while ignoring empty input */
   if (Number(cityName.length) !== 0) {
     storeSearch(cityName);
     getWeather(cityName);
@@ -26,6 +27,7 @@ function citySearch(event) {
   searchForm.reset();
 }
 
+/* fetch data from omdb */
 function getWeather(cityName) {
   fetch(
     `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&appid=${apiOpenWeather}
@@ -44,7 +46,9 @@ function getWeather(cityName) {
     });
 }
 
+/* write data to page */
 function writeWeather(data, cityName) {
+  /* current weather vars */
   let cityTemp = data.current.temp + " °F";
   let cityWind = data.current.wind_speed + " MPH";
   let cityHumidity = data.current.humidity + "%";
@@ -54,8 +58,10 @@ function writeWeather(data, cityName) {
   cityDayMonth = cityDayMonth.slice(-2);
   let cityDayDay = `0${cityDayDate.getDate()}`;
   cityDayDay = cityDayDay.slice(-2);
+  let cityIcon = data.current.weather[0].icon;
   let cityUV = data.current.uvi.toFixed(2);
   let uvColor = "uvPurple";
+  /* color uv conditionally */
   if (cityUV < 3) {
     uvColor = "uvGreen";
   } else if (cityUV < 6) {
@@ -65,12 +71,13 @@ function writeWeather(data, cityName) {
   } else if (cityUV < 11) {
     uvColor = "uvRed";
   }
-  let cityIcon = data.current.weather[0].icon;
   const currentInfo = document.querySelector("#cityDetails");
   currentInfo.innerHTML = `<h2><span class="capitalCase">${cityName}</span> (${cityDayYear}/${cityDayMonth}/${cityDayDay})</h2><img id="currentIcon" src="http://openweathermap.org/img/wn/${cityIcon}@2x.png" alt="a small icon depicting the current day's conditions"><p>Temp: ${cityTemp}</p><p>Wind: ${cityWind}</p><p>Humidity: ${cityHumidity}</p><p>UV Index: <span class="${uvColor}"> ${cityUV}</span></p>`;
+  /* forecast writing */
   let cityForecast = data.daily;
   const forecastDays = document.querySelector("#forecastDays");
   forecastDays.innerHTML = "";
+  /* loop over forecast for 5 days */
   for (let i = 1; i < 6; i++) {
     let castDay = cityForecast[i];
     let castIcon = castDay.weather[0].icon;
@@ -88,6 +95,7 @@ function writeWeather(data, cityName) {
   }
 }
 
+/* write buttons for previous searches */
 function writePrev() {
   getWeather(weatherSearches[0]);
   previousSearches.innerHTML = "";
@@ -96,6 +104,7 @@ function writePrev() {
   }
 }
 
+/* function for click listener on previous search buttons */
 function prevSearch(event) {
   if (event.target.matches("button")) {
     prevCityName = event.target.innerText;
@@ -103,6 +112,8 @@ function prevSearch(event) {
     getWeather(prevCityName);
   }
 }
+
+/* store user searches in localstorage */
 function storeSearch(search) {
   // current search lowercased and stored as var
   let searchToStore = search.toLowerCase();
