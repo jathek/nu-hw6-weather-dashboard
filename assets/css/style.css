@@ -6,14 +6,21 @@
   box-sizing: border-box;
   /* outline: 1px dashed red; for testing */
 }
+/* set font-size to 62.5 so rem * 10 is pixels */
 html {
   font-size: 62.5%;
   margin: 0;
   padding: 0;
 }
 
+/* capital case for certain text spans */
 .capitalCase {
   text-transform: capitalize;
+}
+
+p {
+  margin: 0;
+  line-height: 200%;
 }
 
 body {
@@ -26,6 +33,7 @@ body {
   /* height: 100vh; */
 }
 
+/* header styles */
 header {
   flex: 0 0 10%;
   max-height: 10%;
@@ -41,6 +49,8 @@ h1 {
   text-align: center;
   margin: 0;
 }
+
+/* sidebar + current conditions + forecast container */
 .weatherInfo {
   flex: 0 0 90%;
   max-height: 90%;
@@ -53,6 +63,7 @@ h3 {
   margin: 0;
 }
 
+/* sidebar */
 #search {
   flex: 0 0 20%;
   max-width: 20%;
@@ -91,6 +102,7 @@ h3 {
   flex: 0 0 0.2rem;
   color: grey;
 }
+/* buttons for previous searches - created via js */
 #previousSearches {
   display: flex;
   flex-direction: column;
@@ -109,6 +121,7 @@ h3 {
   border: none;
 }
 
+/* current conditions + forecast */
 main {
   flex: 0 0 80%;
   display: flex;
@@ -116,7 +129,6 @@ main {
   max-width: 80%;
   padding: var(--sharedpadding);
 }
-
 #cityDetails {
   outline: 1px solid black;
   border-radius: 5px;
@@ -125,10 +137,12 @@ main {
 #cityDetails h2 {
   display: inline;
 }
+/* limit height of current conditions icon and move it down */
 #currentIcon {
-  max-height: 3em;
+  max-height: 4.8rem;
   margin-bottom: -1.6rem;
 }
+/* colors for uv index */
 span[class^="uv"] {
   padding: 0 0.8rem;
   border-radius: 5px;
@@ -155,14 +169,7 @@ span[class^="uv"] {
   color: white;
 }
 
-h4 {
-  margin: 0;
-}
-p {
-  margin: 0;
-  line-height: 200%;
-}
-
+/* 5 day forecast */
 #fiveDay {
   height: 100%;
   display: flex;
@@ -189,6 +196,9 @@ p {
   color: white;
   padding: var(--sharedpadding);
   border-radius: 5px;
+}
+#forecastDays > .daycast h4 {
+  margin: 0;
 }
 #forecastDays > .daycast img {
   height: 4.8rem;
