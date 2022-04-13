@@ -7,7 +7,6 @@ if (weatherSearches === null) {
   weatherSearches = [];
 } else {
   writePrev();
-  previousSearches.addEventListener("click", prevSearch);
 }
 
 // accept searches from user
@@ -17,7 +16,6 @@ searchForm.addEventListener("submit", citySearch);
 function citySearch(event) {
   event.preventDefault();
   let cityName = searchInput.value.trim();
-  console.log(typeof cityName.length);
   /* call store and get functions while ignoring empty input */
   if (Number(cityName.length) !== 0) {
     storeSearch(cityName);
@@ -99,9 +97,10 @@ function writeWeather(data, cityName) {
 function writePrev() {
   getWeather(weatherSearches[0]);
   previousSearches.innerHTML = "";
-  for (let i = 0; i < 8; i++) {
+  for (let i = 0; i < 8 && i < weatherSearches.length; i++) {
     previousSearches.innerHTML += `<button class="capitalCase">${weatherSearches[i]}</button>`;
   }
+  previousSearches.addEventListener("click", prevSearch);
 }
 
 /* function for click listener on previous search buttons */
