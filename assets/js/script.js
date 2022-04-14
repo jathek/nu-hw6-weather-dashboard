@@ -70,7 +70,7 @@ function writeWeather(data, cityName) {
     uvColor = "uvRed";
   }
   const currentInfo = document.querySelector("#cityDetails");
-  currentInfo.innerHTML = `<h2><span class="capitalCase">${cityName}</span> (${cityDayYear}/${cityDayMonth}/${cityDayDay})</h2><img id="currentIcon" src="http://openweathermap.org/img/wn/${cityIcon}@2x.png" alt="a small icon depicting the current day's conditions"><p>Temp: ${cityTemp}</p><p>Wind: ${cityWind}</p><p>Humidity: ${cityHumidity}</p><p>UV Index: <span class="${uvColor}"> ${cityUV}</span></p>`;
+  currentInfo.innerHTML = `<h2><span class="capitalCase">${cityName}</span> (${cityDayYear}/${cityDayMonth}/${cityDayDay})</h2><img id="currentIcon" src="https://openweathermap.org/img/wn/${cityIcon}@2x.png" alt="a small icon depicting the current day's conditions"><p>Temp: ${cityTemp}</p><p>Wind: ${cityWind}</p><p>Humidity: ${cityHumidity}</p><p>UV Index: <span class="${uvColor}"> ${cityUV}</span></p>`;
   /* forecast writing */
   let cityForecast = data.daily;
   const forecastDays = document.querySelector("#forecastDays");
@@ -89,7 +89,7 @@ function writeWeather(data, cityName) {
     castDayMonth = castDayMonth.slice(-2);
     let castDayDay = `0${castDayDate.getDate()}`;
     castDayDay = castDayDay.slice(-2);
-    forecastDays.innerHTML += `<div class="daycast"><h4>${castDayYear}/${castDayMonth}/${castDayDay}</h4><img src="http://openweathermap.org/img/wn/${castIcon}@2x.png" alt="a small icon depicting the forecasted day's conditions"><p>High: ${castTempHi}</p><p>Low: ${castTempLow}</p><p>Wind: ${castWind}</p><p>Humidity: ${castHumid}</p></div>`;
+    forecastDays.innerHTML += `<div class="daycast"><h4>${castDayYear}/${castDayMonth}/${castDayDay}</h4><img src="https://openweathermap.org/img/wn/${castIcon}@2x.png" alt="a small icon depicting the forecasted day's conditions"><p>High: ${castTempHi}</p><p>Low: ${castTempLow}</p><p>Wind: ${castWind}</p><p>Humidity: ${castHumid}</p></div>`;
   }
 }
 
